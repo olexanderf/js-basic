@@ -1,0 +1,62 @@
+.container {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 15px;
+    width: 1024px;
+    height: 768px;
+    background-color: cornflowerblue;
+    box-sizing: border-box;
+}
+.box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box {
+    margin: 20px 10px;
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+}
+
+.buttons-box {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide-button {
+    cursor: pointer;
+    margin-right: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    font-size: 20px;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.box-container.second > div {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-of-box {
+    font-size: 18px;
+    height: 45px;
+    width: 300px;
+    margin: 0 20px;
+}
