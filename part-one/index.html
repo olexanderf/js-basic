@@ -4,36 +4,64 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <title>JS Basic - Part One (Fast)</title>
   </head>
   <body>
-      <div class="container">
-        <div class="box-container first">
-            <div class="box" id="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
+    <div class="wrapper">
+      <div class="coordinates">
+        <span class="x" id="x"></span>
+        <span class="y" id="y"></span>
+      </div>
+      <div class="box-container first">
+        <div class="box" id="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
       <div class="buttons-box">
         <button class="hide-button" id="css-hide">CSS Hide</button>
         <button class="hide-button" id="js-hide">JS Hide</button>
         <button class="hide-button" id="css-js-hide">CSS + JS Hide</button>
       </div>
       <div class="box-container second">
-        <div class="box one">box one</div>
-        <div class="box two">box two</div>
-        <div class="box three">box three</div>
-        <div class="box four">box four</div>
-        <div class="box five">box five</div>
-    </div>
-        <form action="">
-            <input type="text" class="name-of-box" name="name">
-            <button class="hide-button" name="btn">Hide Box</button>
-        </form>
-
+        <div class="box one">one</div>
+        <div class="box two">two</div>
+        <div class="box three">three</div>
+        <div class="box four">four</div>
+        <div class="box five">five</div>
+      </div>
+      <div class="name-of-selector">
+        <input
+          type="text"
+          class="name-of-box"
+          id="name"
+          placeholder="Enter name of box"
+        />
+        <button class="hide-button" id="btn-hidde">Hide Box</button>
+      </div>
+      <div class="yellow-square" id="yellow-square"></div>
+      <div class="container">
+        <div class="red-square hidden" id="red-square"></div>
+        <button class="hide-button" id="on-hover">On Hover</button>
+      </div>
+      <div class="container">
+        <div class="green-square hidden" id="green-square"></div>
+        <input type="text" id="green-square-input">
+      </div>
+      <div class="container">
+        <input type="text" id="image-url">
+        <button class="hide-button" id="show-img">Show image</button>
+      </div>
+      <div class="img-container"></div>
+      <div class="container">
+        <input type="text" id="image-url-many">
+        <button class="hide-button" id="show-img-many">Show all img</button>
+      </div>
+      <div class="img-container many"></div>
+      
     </div>
     <script src="script.js"></script>
   </body>
