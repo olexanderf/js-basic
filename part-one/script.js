@@ -27,6 +27,16 @@ let imgContainerMany = document.querySelector(".img-container.many");
 let x = document.getElementById("x");
 let y = document.getElementById("y");
 
+let userLang = navigator.language;
+let fieldLang = document.querySelector(".language");
+
+let latitudeSpan = document.querySelector(".latitude");
+let longitudeSpan = document.querySelector(".longitude");
+
+let pEditLocalStor = document.querySelector(".container.edit > p:nth-child(2)");
+let pEditCookies = document.querySelector(".container.edit > p:nth-child(4)");
+let pEditSessionStor = document.querySelector(".container.edit > p:nth-child(6)");
+
 cssHide.addEventListener("click", () => {
     box.style.display = "none";
 })
@@ -85,15 +95,81 @@ btnShowImg.addEventListener("click", () => {
 let textarea = document.createElement("textarea")
 imageUrlMany.replaceWith(textarea)
 
-btnShowImgMany.addEventListener("click", ()=>{
+btnShowImgMany.addEventListener("click", () => {
     let urlStore = textarea.value.split('\n');
     urlStore.forEach(el => {
-     let imgTag = document.createElement("img");
-     imgTag.setAttribute("src", el);
-     imgContainerMany.append(imgTag)})
+        let imgTag = document.createElement("img");
+        imgTag.setAttribute("src", el);
+        imgContainerMany.append(imgTag)
+    })
 })
 
-addEventListener('mousemove', ()=>{
-    x.innerText =`X: ${window.event.pageX+""}`;
-    y.innerText =`Y: ${window.event.pageY+""}`;
+addEventListener('mousemove', () => {
+    x.innerText = `X: ${window.event.pageX + ""}`;
+    y.innerText = `Y: ${window.event.pageY + ""}`;
+})
+
+fieldLang.innerText = `Language: ${userLang}`;
+
+navigator.geolocation.getCurrentPosition((position) => {
+    latitudeSpan.innerHTML = `Ш: ${position.coords.latitude}`
+    longitudeSpan.innerHTML = `Д: ${position.coords.longitude}`
+});
+
+
+
+pEditLocalStor.outerHTML = '<textarea class="edit-text">';
+let textAreaEditLocal = document.querySelector(".container.edit > textarea:nth-child(2)");
+textAreaEditLocal.value = localStorage.getItem('textEditLocal');
+textAreaEditLocal.addEventListener("blur", () => {
+    localStorage.setItem('textEditLocal', textAreaEditLocal.value);
+})
+
+let setCookie = (name, value, options = {}) => {
+    options = {
+        path: '/',
+        ...options
+    }
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+}
+let getCookie = (name) => {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : "";
+}
+
+pEditCookies.outerHTML = `<textarea class="edit-text">`;
+let textAreaEditCookies = document.querySelector(".container.edit > textarea:nth-child(4)");
+textAreaEditCookies.value = getCookie('textEditCookies');
+textAreaEditCookies.addEventListener("blur", () => {
+    setCookie('textEditCookies', textAreaEditCookies.value);
+});
+
+pEditSessionStor.outerHTML = `<textarea class="edit-text">`;
+let textAreaEditSessionStor = document.querySelector(".container.edit > textarea:nth-child(6)");
+textAreaEditSessionStor.value = sessionStorage.getItem("textEditSession");
+textAreaEditSessionStor.addEventListener("blur", () => {
+    sessionStorage.setItem("textEditSession", textAreaEditSessionStor.value);
+});
+
+let scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+);
+
+let upBtn = document.querySelector(".up-btn");
+let footer = document.querySelector(".footer");
+upBtn.style.display = "none"
+
+window.addEventListener("scroll", () => {
+    if ((window.pageYOffset + 800) >= scrollHeight) {
+        upBtn.style.display = "flex";
+        upBtn.addEventListener("click", () => {
+            window.scrollTo(0, 0);
+        })
+    } else {
+        upBtn.style.display = "none";
+    }
 })
