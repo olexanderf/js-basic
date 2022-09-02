@@ -37,6 +37,12 @@ let pEditLocalStor = document.querySelector(".container.edit > p:nth-child(2)");
 let pEditCookies = document.querySelector(".container.edit > p:nth-child(4)");
 let pEditSessionStor = document.querySelector(".container.edit > p:nth-child(6)");
 
+let blockOne = document.querySelector(".block.one");
+let blockTwo = document.querySelector(".block.two");
+
+let blockScroll = document.getElementById("block-scroll");
+let greyBox = document.querySelector(".grey");
+
 cssHide.addEventListener("click", () => {
     box.style.display = "none";
 })
@@ -161,7 +167,7 @@ let scrollHeight = Math.max(
 
 let upBtn = document.querySelector(".up-btn");
 let footer = document.querySelector(".footer");
-upBtn.style.display = "none"
+upBtn.style.display = "none";
 
 window.addEventListener("scroll", () => {
     if ((window.pageYOffset + 800) >= scrollHeight) {
@@ -172,4 +178,41 @@ window.addEventListener("scroll", () => {
     } else {
         upBtn.style.display = "none";
     }
+})
+
+blockOne.addEventListener("click", (e) => {
+    if (e.target.classList == "block two") return;
+    alert("From Block One");
+})
+
+blockTwo.addEventListener("click", () => {
+    alert("From Block Two");
+})
+
+blockScroll.addEventListener("click", () => {
+    greyBox.style.display = "block";
+    document.documentElement.style.overflow = "hidden";
+})
+
+greyBox.addEventListener("click", ()=> {
+    greyBox.style.display = "none";
+    document.documentElement.style.overflow = "auto";
+})
+
+let form = document.forms[0];
+form.go.addEventListener("click", (e)=>{
+    e.preventDefault();
+})
+
+let fileInput = document.getElementById("file");
+
+fileInput.addEventListener("dragover" , (e)=>{
+    e.preventDefault();
+    fileInput.classList.add("anim");
+})
+
+fileInput.addEventListener("drop" , (e)=> {
+    e.preventDefault();
+    fileInput.className = "";
+    fileInput.classList.add("anim2");
 })
